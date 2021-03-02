@@ -1,7 +1,8 @@
-package com.laszloborbely.springboottest;
+package com.laszloborbely.springboottest.greeting;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.atomic.AtomicLong;
@@ -19,13 +20,11 @@ public class GreetingController {
     private final AtomicLong counter = new AtomicLong();
 
     /**
-     * GET greeting route
-     *
-     * @param name Person to greet
      * @return Hello, {name of the person}!
      */
     @GetMapping("/greeting")
-    public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-        return new Greeting(counter.incrementAndGet(), String.format(template, name));
+    public Greeting greeting() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return new Greeting(counter.incrementAndGet(), String.format(template, auth.getPrincipal()));
     }
 }

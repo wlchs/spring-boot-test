@@ -1,15 +1,13 @@
-package com.laszloborbely.springboottest;
+package com.laszloborbely.springboottest.greeting;
 
 public class Greeting {
-    /**
+    /*
      * Constant fields
      */
     private final long id;
     private final String content;
 
     /**
-     * Greeting constructor
-     *
      * @param id      Unique ID
      * @param content Name of the person to greet
      */
@@ -19,8 +17,6 @@ public class Greeting {
     }
 
     /**
-     * Getter function for ID
-     *
      * @return Unique ID
      */
     public long getId() {
@@ -28,8 +24,6 @@ public class Greeting {
     }
 
     /**
-     * Getter function for content
-     *
      * @return Name of the person to greet
      */
     public String getContent() {
